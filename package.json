@@ -1,0 +1,20 @@
+{
+  "name": "gelobang-and-conf-service",
+  "version": "1.0.0",
+  "description": "Microservices untuk menangani pembuatan gelombang dan konfigurasi admin",
+  "license": "ISC",
+  "author": "Rival Nugraha",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.11.1",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "prisma": "^6.11.1"
+  }
+}

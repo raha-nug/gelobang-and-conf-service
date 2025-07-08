@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum StatusGelombang {
+  SEGERA_DIBUKA
+  AKTIF
+  DITUTUP
+}
+
+model Gelombang {
+  id             String          @id @default(cuid())
+  nama           String
+  tahunAkademik  String
+  tanggalMulai   DateTime
+  tanggalSelesai DateTime
+  status         StatusGelombang @default(SEGERA_DIBUKA)
+  adminPembuatId String
+
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  @@map("gelombang")
+}
+
+model ProgramStudi {
+  id        String @id @default(cuid())
+  kodeProdi String @unique
+  namaProdi String
+  fakultas  String?
+  deskripsi String?
+
+  @@map("program_studi")
+}
+
+// Menambahkan model untuk fungsionalitas A3. Lihat Pengumuman PMB
+model Pengumuman {
+  id               String   @id @default(cuid())
+  judul            String
+  isiKonten        String   @db.Text
+  isPublished      Boolean  @default(false)
+  adminPembuatId   String
+  tanggalPublikasi DateTime @default(now())
+
+  @@map("pengumuman")
+}

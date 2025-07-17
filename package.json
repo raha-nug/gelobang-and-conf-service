@@ -7,7 +7,9 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "server.js",
+    "vercel-build": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.11.1",

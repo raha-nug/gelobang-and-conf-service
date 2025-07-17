@@ -12,7 +12,6 @@ export const createGelombang = async (req, res) => {
       req.user.id
     );
 
-
     res
       .status(201)
       .json({ message: "Gelombang berhasil dibuat.", data: gelombang });
@@ -49,7 +48,6 @@ export const deleteGelombang = async (req, res) => {
 };
 
 export const getGelombangById = async (req, res) => {
-
   try {
     const gelombang = await appService.getGelombangByIdUseCase(req.params.id);
     if (!gelombang) {
@@ -63,6 +61,20 @@ export const getGelombangById = async (req, res) => {
     res
       .status(500)
       .json({ message: error.message || "Gagal mengambil data gelombang." });
+  }
+};
+export const getValidGelombang = async (req, res) => {
+  try {
+    const gelombang = await appService.getGelombangByIdUseCase(req.params.id);
+
+    if (!gelombang) {
+      res
+        .status(400)
+        .json({ message: "Gelombang tidak terverifikasi", isValid: false });
+    }
+    res.status(200).json({ message: "Gelombang terverifikasi", isValid: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 export const getAllGelombang = async (req, res) => {
@@ -91,7 +103,9 @@ export const createProgramStudi = async (req, res) => {
       .status(201)
       .json({ message: "Program studi berhasil dibuat.", data: prodi });
   } catch (error) {
-    res.status(400).json({ message: error.message || "Gagal membuat program studi." });
+    res
+      .status(400)
+      .json({ message: error.message || "Gagal membuat program studi." });
   }
 };
 export const updateProgramStudi = async (req, res) => {
@@ -104,7 +118,9 @@ export const updateProgramStudi = async (req, res) => {
       .status(200)
       .json({ message: "Program studi berhasil diperbarui.", data: prodi });
   } catch (error) {
-    res.status(400).json({ message: error.message || "Gagal memperbarui program studi." });
+    res
+      .status(400)
+      .json({ message: error.message || "Gagal memperbarui program studi." });
   }
 };
 export const deleteProgramStudi = async (req, res) => {
@@ -112,19 +128,21 @@ export const deleteProgramStudi = async (req, res) => {
     await appService.deleteProgramStudiUseCase(req.params.id);
     res.status(200).json({ message: "Program studi berhasil dihapus." });
   } catch (error) {
-    res.status(400).json({ message: error.message || "Gagal menghapus program studi." });
+    res
+      .status(400)
+      .json({ message: error.message || "Gagal menghapus program studi." });
   }
 };
 export const getAllProgramStudi = async (req, res) => {
   try {
     const prodi = await appService.getAllProgramStudiUseCase();
-    res.status(200).json({message: "Berhasil mengambil data program studi", data: prodi });
-  } catch (error) {
     res
-      .status(500)
-      .json({
-        message: error.message || "Gagal mengambil data program studi.",
-      });
+      .status(200)
+      .json({ message: "Berhasil mengambil data program studi", data: prodi });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message || "Gagal mengambil data program studi.",
+    });
   }
 };
 export const getProgramStudiById = async (req, res) => {
@@ -135,18 +153,14 @@ export const getProgramStudiById = async (req, res) => {
         .status(404)
         .json({ message: "Program studi tidak ditemukan." });
     }
-    res
-      .status(200)
-      .json({
-        message: `Berhasil mengambil data program studi by id ${req.params.id}`,
-        data: prodi,
-      });
+    res.status(200).json({
+      message: `Berhasil mengambil data program studi by id ${req.params.id}`,
+      data: prodi,
+    });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: error.message || "Gagal mengambil data program studi.",
-      });
+    res.status(500).json({
+      message: error.message || "Gagal mengambil data program studi.",
+    });
   }
 };
 
@@ -214,12 +228,10 @@ export const getPengumumanById = async (req, res) => {
     if (!pengumuman) {
       return res.status(404).json({ message: "Pengumuman tidak ditemukan." });
     }
-    res
-      .status(200)
-      .json({
-        message: `Berhasil mengambil data pengumuman by id ${req.params.id}`,
-        data: pengumuman,
-      });
+    res.status(200).json({
+      message: `Berhasil mengambil data pengumuman by id ${req.params.id}`,
+      data: pengumuman,
+    });
   } catch (error) {
     res
       .status(500)

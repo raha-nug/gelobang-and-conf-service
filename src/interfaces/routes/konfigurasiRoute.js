@@ -47,6 +47,12 @@ router.get(
   requireAdmin,
   controller.getGelombangById
 );
+router.get(
+  "/isValidGelombang/:id",
+  authenticateToken,
+  requireAdmin,
+  controller.getValidGelombang
+);
 // A9. Kelola Program Studi
 router.post(
   "/program-studi",

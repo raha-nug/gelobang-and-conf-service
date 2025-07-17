@@ -12,26 +12,38 @@ export const createGelombang = ({
   if (new Date(tanggalSelesai) <= new Date(tanggalMulai)) {
     throw new Error("Tanggal selesai harus setelah tanggal mulai.");
   }
+
+  function parseTanggalIndonesia(tanggalStr) {
+    const [dd, mm, yyyy] = tanggalStr.split("/");
+    return new Date(`${yyyy}-${mm}-${dd}`).toISOString();
+  }
+
+  const formattedTanggalMulai = parseTanggalIndonesia(tanggalMulai);
+  const formattedTanggalSelesai = parseTanggalIndonesia(tanggalSelesai);
+
   return {
     nama,
     tahunAkademik,
-    tanggalMulai,
-    tanggalSelesai,
+    tanggalMulai: formattedTanggalMulai,
+    tanggalSelesai: formattedTanggalSelesai,
     adminPembuatId: adminId,
   };
 };
 
+export const updateGelombang = ({})=>{
+
+}
+
 // Aturan bisnis untuk Program Studi
 export const createProgramStudi = ({
-  kodeProdi,
   namaProdi,
   fakultas,
   deskripsi,
 }) => {
-  if (!kodeProdi || !namaProdi) {
-    throw new Error("Kode Prodi dan Nama Prodi tidak boleh kosong.");
+  if (!namaProdi) {
+    throw new Error("Nama Prodi tidak boleh kosong.");
   }
-  return { kodeProdi, namaProdi, fakultas, deskripsi };
+  return { namaProdi, fakultas, deskripsi };
 };
 
 // Aturan bisnis untuk Pengumuman

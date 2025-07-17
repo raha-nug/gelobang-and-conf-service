@@ -11,6 +11,8 @@ export const createGelombang = async (req, res) => {
       req.body,
       req.user.id
     );
+
+
     res
       .status(201)
       .json({ message: "Gelombang berhasil dibuat.", data: gelombang });
@@ -47,6 +49,7 @@ export const deleteGelombang = async (req, res) => {
 };
 
 export const getGelombangById = async (req, res) => {
+
   try {
     const gelombang = await appService.getGelombangByIdUseCase(req.params.id);
     if (!gelombang) {
@@ -117,7 +120,11 @@ export const getAllProgramStudi = async (req, res) => {
     const prodi = await appService.getAllProgramStudiUseCase();
     res.status(200).json({message: "Berhasil mengambil data program studi", data: prodi });
   } catch (error) {
-    res.status(500).json({ message: "Gagal mengambil data program studi." });
+    res
+      .status(500)
+      .json({
+        message: error.message || "Gagal mengambil data program studi.",
+      });
   }
 };
 export const getProgramStudiById = async (req, res) => {

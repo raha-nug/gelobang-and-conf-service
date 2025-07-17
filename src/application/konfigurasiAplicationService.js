@@ -16,8 +16,7 @@ export const updateGelombangUseCase = async (id, data) => {
   if (!existingGelombang) {
     throw new Error("Gelombang tidak ditemukan.");
   }
-  const updatedGelombangData = domain.createGelombang(data);
-  return repository.updateGelombang(id, updatedGelombangData);
+  return repository.updateGelombang(id, data);
 };
 export const deleteGelombangUseCase = async (id) => {
   const existingGelombang = await repository.findGelombangById(id);
@@ -26,8 +25,8 @@ export const deleteGelombangUseCase = async (id) => {
   }
   return repository.deleteGelombang(id);
 };
-export const getGelombangByIdUseCase = async () => {
-  const gelombang = await repository.findGelombangById();
+export const getGelombangByIdUseCase = async (id) => {
+  const gelombang = await repository.findGelombangById(id);
   if (!gelombang) {
     throw new Error("Gelombang tidak ditemukan.");
   }
@@ -71,9 +70,6 @@ export const getProgramStudiByIdUseCase = async (id) => {
 };
 export const getAllProgramStudiUseCase = async () => {
   const prodiList = await repository.findAllProgramStudi();
-  if (!prodiList || prodiList.length === 0) {
-    throw new Error("Tidak ada data program studi.");
-  }
   return prodiList;
 };
 
@@ -111,9 +107,6 @@ export const getPengumumanByIdUseCase = async (id) => {
 };
 export const getAllPengumumanUseCase = async () => {
   const pengumumanList = await repository.findAllPengumuman();
-  if (!pengumumanList || pengumumanList.length === 0) {
-    throw new Error("Tidak ada data pengumuman.");
-  }
   return pengumumanList;
 };
 

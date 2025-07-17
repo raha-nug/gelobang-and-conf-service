@@ -83,6 +83,12 @@ router.get(
 );
 
 // Fungsionalitas Admin untuk membuat pengumuman
+router.get(
+  "/pengumuman",
+  authenticateToken,
+  requireAdmin,
+  controller.getAllPengumuman
+);
 router.post(
   "/pengumuman",
   authenticateToken,

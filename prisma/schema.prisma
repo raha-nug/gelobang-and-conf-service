@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -37,7 +37,6 @@ model Gelombang {
 
 model ProgramStudi {
   id        String @id @default(cuid())
-  kodeProdi String @unique
   namaProdi String
   fakultas  String?
   deskripsi String?

@@ -21,6 +21,6 @@ export async function authenticateToken(req, res, next) {
     req.user = user; // Simpan user ke request untuk digunakan di controller
     next();
   } catch (error) {
-    throw new Error("Token tidak valid");
+    throw new Error(error.message);
   }
 }

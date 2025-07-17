@@ -68,11 +68,9 @@ export const getValidGelombang = async (req, res) => {
     const gelombang = await appService.getGelombangByIdUseCase(req.params.id);
 
     if (!gelombang) {
-      res
-        .status(400)
-        .json({ message: "Gelombang tidak terverifikasi", isValid: false });
+      res.status(400).json({ isValid: false });
     }
-    res.status(200).json({ message: "Gelombang terverifikasi", isValid: true });
+    res.status(200).json({ isValid: true });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

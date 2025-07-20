@@ -48,7 +48,7 @@ router.get(
   controller.getGelombangById
 );
 router.get(
-  "/isValidGelombang/:id",
+  "/verifyGelombang/:id",
   authenticateToken,
   controller.getValidGelombang
 );

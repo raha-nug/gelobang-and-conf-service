@@ -37,14 +37,12 @@ router.delete(
 router.get(
   "/gelombang",
   authenticateToken,
-  requireAdmin,
   controller.getAllGelombang
 );
 
 router.get(
   "/gelombang/:id",
   authenticateToken,
-  requireAdmin,
   controller.getGelombangById
 );
 router.get(
@@ -76,14 +74,12 @@ router.delete(
 router.get(
   "/program-studi/:id",
   authenticateToken,
-  requireAdmin,
   controller.getProgramStudiById
 );
 
 router.get(
   "/program-studi",
   authenticateToken,
-  requireAdmin,
   controller.getAllProgramStudi
 );
 
@@ -91,7 +87,6 @@ router.get(
 router.get(
   "/pengumuman",
   authenticateToken,
-  requireAdmin,
   controller.getAllPengumuman
 );
 router.post(
@@ -115,7 +110,6 @@ router.delete(
 router.get(
   "/pengumuman/:id",
   authenticateToken,
-  requireAdmin,
   controller.getPengumumanById
 );
 

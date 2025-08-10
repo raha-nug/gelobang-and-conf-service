@@ -13,19 +13,12 @@ export const createGelombang = ({
     throw new Error("Tanggal selesai harus setelah tanggal mulai.");
   }
 
-  function parseTanggalIndonesia(tanggalStr) {
-    const [dd, mm, yyyy] = tanggalStr.split("/");
-    return new Date(`${yyyy}-${mm}-${dd}`).toISOString();
-  }
-
-  const formattedTanggalMulai = parseTanggalIndonesia(tanggalMulai);
-  const formattedTanggalSelesai = parseTanggalIndonesia(tanggalSelesai);
 
   return {
     nama,
     tahunAkademik,
-    tanggalMulai: formattedTanggalMulai,
-    tanggalSelesai: formattedTanggalSelesai,
+    tanggalMulai,
+    tanggalSelesai,
     adminPembuatId: adminId,
   };
 };

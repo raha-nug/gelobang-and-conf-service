@@ -4,6 +4,7 @@ export const createGelombang = ({
   tahunAkademik,
   tanggalMulai,
   tanggalSelesai,
+  status,
   adminId,
 }) => {
   if (!nama || !tahunAkademik || !tanggalMulai || !tanggalSelesai) {
@@ -19,6 +20,7 @@ export const createGelombang = ({
     tahunAkademik,
     tanggalMulai,
     tanggalSelesai,
+    status: status? status : "SEGERA_DIBUKA",
     adminPembuatId: adminId,
   };
 };

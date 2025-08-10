@@ -14,7 +14,6 @@ export const createGelombang = ({
     throw new Error("Tanggal selesai harus setelah tanggal mulai.");
   }
 
-
   return {
     nama,
     tahunAkademik,
@@ -25,16 +24,10 @@ export const createGelombang = ({
   };
 };
 
-export const updateGelombang = ({})=>{
-
-}
+export const updateGelombang = ({}) => {};
 
 // Aturan bisnis untuk Program Studi
-export const createProgramStudi = ({
-  namaProdi,
-  fakultas,
-  deskripsi,
-}) => {
+export const createProgramStudi = ({ namaProdi, fakultas, deskripsi }) => {
   if (!namaProdi) {
     throw new Error("Nama Prodi tidak boleh kosong.");
   }
@@ -42,9 +35,14 @@ export const createProgramStudi = ({
 };
 
 // Aturan bisnis untuk Pengumuman
-export const createPengumuman = ({ judul, isiKonten, adminId }) => {
+export const createPengumuman = ({
+  judul,
+  isiKonten,
+  isPublished,
+  adminId,
+}) => {
   if (!judul || !isiKonten) {
     throw new Error("Judul dan Isi Konten tidak boleh kosong.");
   }
-  return { judul, isiKonten, adminPembuatId: adminId, isPublished: false };
+  return { judul, isiKonten, adminPembuatId: adminId, isPublished };
 };

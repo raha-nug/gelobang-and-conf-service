@@ -20,7 +20,7 @@ export const createGelombang = ({
     tahunAkademik,
     tanggalMulai,
     tanggalSelesai,
-    status: status? status : "SEGERA_DIBUKA",
+    status,
     adminPembuatId: adminId,
   };
 };
